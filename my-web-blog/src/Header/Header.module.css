@@ -1,0 +1,78 @@
+.header {
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search_bar {
+  display: flex;
+}
+
+.search_container {
+  display: flex;
+  align-items: center;
+}
+
+.search_input {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+  width: 500px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search_button {
+  background-color: hsl(200, 100%, 50%);
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search_button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Thêm hiệu ứng hover */
+.search_button:hover {
+  background-color: hsl(200, 100%, 40%);
+}
+
+/* Thêm hiệu ứng khi nhấn */
+.search_button:active {
+  transform: scale(0.95);
+  background-color: hsl(200, 100%, 35%);
+}
+
+.header h1 {
+  max-width: max-content;
+}
+
+.logo {
+  height: 120px;
+  width: auto;
+}
+
+.logoButton {
+  background: none;
+  border: none;
+  cursor: pointer; /* Thay đổi con trỏ thành bàn tay khi di chuột qua logo */
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.logoButton:focus {
+  outline: none; /* Xóa đường viền mặc định của nút khi được chọn */
+}

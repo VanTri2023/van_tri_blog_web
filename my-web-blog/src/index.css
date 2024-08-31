@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.button {
+  background-color: hsl(200, 100%, 50%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer; /* Changes cursor to hand when hovering over the button */
+  margin-right: 5px;
+  font-size: medium;
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transition */
+}
+
+/* Add hover effect */
+.button:hover {
+  background-color: hsl(200, 100%, 40%); /* Slightly darker shade on hover */
+}
+
+/* Add active (pressed) effect */
+.button:active {
+  transform: scale(0.95); /* Slightly shrink the button when clicked */
+  background-color: hsl(200, 100%, 35%); /* Even darker shade when pressing */
+}
