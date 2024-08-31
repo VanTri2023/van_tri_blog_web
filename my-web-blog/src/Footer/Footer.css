@@ -1,0 +1,61 @@
+.footer {
+  background-color: #ffffff; /* Màu nền trắng */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 3px solid #000; /* Đường viền trên của footer */
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Gờ nổi ở cạnh trên */
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-logo {
+  max-width: 100px;
+}
+
+.footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.contact-me {
+  text-align: right;
+}
+
+.contact-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-icon {
+  width: 24px; /* Kích thước biểu tượng */
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s, color 0.3s;
+  color: #fff; /* Màu biểu tượng trắng */
+}
+
+/* Màu nền cho từng biểu tượng */
+.mail-icon {
+  background-color: #D44638; /* Màu nền Gmail */
+}
+
+.line-icon {
+  background-color: #00C300; /* Màu nền Line */
+}
+
+.facebook-icon {
+  background-color: #1877F2; /* Màu nền Facebook */
+}
+
+.contact-icon:hover {
+  opacity: 0.8; /* Đổi màu biểu tượng khi hover */
+}
