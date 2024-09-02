@@ -1,0 +1,93 @@
+/* Lớp phủ (Overlay) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Màu nền bán trong suốt */
+  z-index: 999; /* Đặt lớp phủ lên trên tất cả các phần tử khác */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto; /* Cho phép tương tác với các phần tử trong lớp phủ */
+}
+
+/* Cập nhật CSS cho login form và lớp phủ */
+.login-form-container {
+  position: fixed; /* Giữ form luôn hiển thị */
+  top: 20%; /* Đặt form ở phía trên của màn hình */
+  left: 50%;
+  transform: translate(-50%, -20%); /* Căn giữa theo chiều ngang và đẩy lên trên một chút */
+  z-index: 1000; /* Đảm bảo form nằm trên các thành phần khác */
+  background-color: #fff; /* Màu nền của container */
+  border: 1px solid #ccc; /* Viền của container */
+  padding: 20px; /* Khoảng cách nội bộ giữa các thành phần */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+  width: 300px; /* Đặt cùng kích thước cho container và form */
+  border-radius: 8px; /* Bo tròn góc của container */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Đảm bảo form chiếm toàn bộ chiều rộng của container */
+}
+
+.login-form div {
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-form input {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box; /* Đảm bảo padding không vượt quá chiều rộng của input */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-form .cancel-button {
+  margin-top: 10px;
+  background-color: #dc3545; /* Màu đỏ cho nút Cancel */
+}
+
+.login-form button:hover {
+  background-color: #0056b3; /* Màu sắc khi hover */
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s; /* Thêm hiệu ứng chuyển đổi khi nhấn */
+}
+
+.close-button:hover {
+  color: #ff0000; /* Đổi màu khi hover */
+}
+
+.close-button:active {
+  transform: scale(0.9); /* Thu nhỏ kích thước nút khi nhấn */
+  color: #cc0000; /* Đổi màu khi nhấn */
+}
+
+

@@ -26,36 +26,28 @@ function MenuBar() {
   return (
     <nav className="menu-bar" ref={menuRef}>
       <ul className="menu-list">
-        {['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'].map((menu, index) => (
+        {['CI/CD', 'AWS', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'].map((menu, index) => (
           <li key={index} className="menu-item">
             <button
               className="menu-button"
               onClick={() => handleMenuClick(index)}
             >
-              {menu}
+            {menu}
             </button>
-            <ul className={`dropdown-menu ${openMenu === index ? 'show' : ''}`}>
-              {index === 0 && (
-                <>
-                  <li className="dropdown-item">
-                    <Link to="/m1-a" className="dropdown-link">Submenu 1 - A</Link>
-                  </li>
-                </>
-              )}
-              {index === 1 && (
-                <>
-                  <li className="dropdown-item">
-                    <Link to="/submenu1" className="dropdown-link">Submenu 1</Link>
-                  </li>
-                  <li className="dropdown-item">
-                    <Link to="/submenu2" className="dropdown-link">Submenu 2</Link>
-                  </li>
-                  <li className="dropdown-item">
-                    <Link to="/submenu3" className="dropdown-link">Submenu 3</Link>
-                  </li>
-                </>
-              )}
-            </ul>
+            {/* Hiển thị submenu chỉ cho Menu 5 và Menu 6 */}
+            {index >= 4 && (
+              <ul className={`dropdown-menu ${openMenu === index ? 'show' : ''}`}>
+                <li className="dropdown-item">
+                  <Link to={`/menu${index + 1}-submenu1`} className="dropdown-link">Submenu 1</Link>
+                </li>
+                <li className="dropdown-item">
+                  <Link to={`/menu${index + 1}-submenu2`} className="dropdown-link">Submenu 2</Link>
+                </li>
+                <li className="dropdown-item">
+                  <Link to={`/menu${index + 1}-submenu3`} className="dropdown-link">Submenu 3</Link>
+                </li>
+              </ul>
+            )}
           </li>
         ))}
       </ul>

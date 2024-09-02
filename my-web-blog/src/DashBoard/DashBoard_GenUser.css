@@ -1,0 +1,74 @@
+.blog-body {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.blog-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.divider {
+  border: 0;
+  border-top: 2px solid #000;
+  margin-bottom: 20px;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  /* Đặt chiều cao cố định cho lưới */
+  min-height: 480px; /* 2 hàng x 240px (hình ảnh) + khoảng cách */
+  max-height: 480px; /* Đảm bảo chiều cao cố định */
+}
+
+.post-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Đặt kích thước cố định cho từng bài viết */
+  height: 240px; /* Chiều cao cố định */
+}
+
+.post-image {
+  width: 100%;
+  height: 150px; /* Chiều cao hình ảnh cố định */
+  object-fit: cover;
+}
+
+.post-title {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  margin: 0;
+}
+
+.pagination {
+  margin-top: 40px;
+  text-align: center;
+  /* Đặt chiều cao cố định cho phần phân trang */
+  height: 40px; 
+}
+
+.pagination-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-button.active {
+  background-color: #0056b3;
+}
+
+.pagination-button:hover {
+  background-color: #0056b3;
+}

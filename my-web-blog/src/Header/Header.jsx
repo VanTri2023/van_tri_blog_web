@@ -1,38 +1,24 @@
 import React, { useState } from 'react';
+import LoginForm from './LoginForm/LoginForm';
 import HeaderStyle from './Header.module.css';
 
 function Header() {
-  const [placeholder, setPlaceholder] = useState("検索");
-  const [inputValue, setInputValue] = useState("");
+  const [isLoginFormVisible, setLoginFormVisible] = useState(false);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    if (e.target.value === "") {
-      setPlaceholder("検索");
-    }
+  const handleLoginClick = () => {
+    setLoginFormVisible(true);
   };
 
-  const handleInputFocus = () => {
-    setPlaceholder("");
-  };
-
-  const handleInputBlur = () => {
-    if (inputValue === "") {
-      setPlaceholder("検索");
-    }
-  };
-
-  const handleLogoClick = () => {
-    // Thêm logic điều hướng tại đây
-    // Hiện tại, không làm gì
+  const handleCloseLoginForm = () => {
+    setLoginFormVisible(false);
   };
 
   return (
     <header className={HeaderStyle.header}>
       <button 
-        onClick={handleLogoClick} 
+        onClick={() => console.log("Logo clicked")} 
         className={HeaderStyle.logoButton} 
-        aria-label="Đi đến trang chính"
+        aria-label="Go to homepage"
       >
         <img
           src="/blog-logo.png"
@@ -45,17 +31,20 @@ function Header() {
           <input
             className={HeaderStyle.search_input}
             type="text"
-            placeholder={placeholder}
-            value={inputValue}
-            onChange={handleInputChange}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
+            placeholder="検索"
           />
           <button className={HeaderStyle.search_button}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-search"
-              width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <circle cx="10" cy="10" r="7" />
@@ -64,7 +53,13 @@ function Header() {
           </button>
         </div>
       </div>
-      <button className="button">ログイン</button>
+      <button className={'button'} onClick={handleLoginClick}>
+        ログイン
+      </button>
+
+      {isLoginFormVisible && (
+        <LoginForm onClose={handleCloseLoginForm} />
+      )}
     </header>
   );
 }
