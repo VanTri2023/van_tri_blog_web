@@ -17,8 +17,8 @@ function Sidebar() {
     navigate('/');
   };
 
-  const handleSettings = () => {
-    navigate('/settings');
+  const handlePostContentList = () => {
+    navigate('/PostContentList');
   };
 
   return (
@@ -28,6 +28,11 @@ function Sidebar() {
         <li className="sidebar-item">
           <button onClick={handleCreateNewPost} className="sidebar-link">
             コンテンツの新規作成
+          </button>
+        </li>
+        <li className="sidebar-item">
+          <button onClick={handlePostContentList} className="sidebar-link">
+            コンテンツ一覧
           </button>
         </li>
         <li className="sidebar-item">
