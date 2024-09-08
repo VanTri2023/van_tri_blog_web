@@ -9,12 +9,12 @@ function Sidebar() {
     navigate('/create-new-post'); 
   };
 
-  const handleManagePosts = () => {
-    navigate('/manage-posts');
+  const handleManageProfile = () => {
+    navigate('/manage-profile');
   };
 
-  const handleAnalytics = () => {
-    navigate('/analytics');
+  const handleLogout = () => {
+    navigate('/');
   };
 
   const handleSettings = () => {
@@ -31,20 +31,16 @@ function Sidebar() {
           </button>
         </li>
         <li className="sidebar-item">
-          <button onClick={handleManagePosts} className="sidebar-link">
-            Quản lý bài viết
+          <button onClick={handleManageProfile} className="sidebar-link">
+          プロフィール管理
           </button>
         </li>
         <li className="sidebar-item">
-          <button onClick={handleAnalytics} className="sidebar-link">
-            Phân tích
+          <button onClick={handleLogout} className="sidebar-link">
+          ログアウト
           </button>
         </li>
-        <li className="sidebar-item">
-          <button onClick={handleSettings} className="sidebar-link">
-            Cài đặt
-          </button>
-        </li>
+        
       </ul>
     </div>
   );

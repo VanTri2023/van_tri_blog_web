@@ -4,7 +4,7 @@ import DashBoard_GenUser from './DashBoard/DashBoard_GenUser.jsx';
 import DashBoardForAdmin from './DashBoard/DashBoardForAdmin.jsx';
 import LoginForm from './DashBoard/Header/LoginForm/LoginForm.jsx';
 import PostDetail from './DashBoard/Post/PostDetail.jsx';
-
+import ManagerProfile from './DashBoard/ManagerProfile/ManagerProfile.jsx';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
@@ -21,6 +21,7 @@ function App() {
           <Route path="*" element={<DashBoard_GenUser />} />
           <Route path="/admin" element={<DashBoardForAdmin />} />
           <Route path="/create-new-post" element={<PostDetail />} />
+          <Route path="/manage-profile" element={<ManagerProfile />} />
         </Routes>
 
         {/* Hiển thị form đăng nhập nếu chưa đăng nhập */}
