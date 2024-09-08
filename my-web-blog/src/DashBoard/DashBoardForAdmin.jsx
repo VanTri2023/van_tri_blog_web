@@ -7,10 +7,7 @@ function DashBoardForAdmin(){
         <>
             
             <Sidebar></Sidebar>
-            <Routes>
-  
-                <Route path="/admin/PostContentList" element={<Content />} />
-            </Routes>
+           
         </>
         
     );

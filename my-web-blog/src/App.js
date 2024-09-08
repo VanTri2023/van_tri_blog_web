@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashBoard_GenUser from './DashBoard/DashBoard_GenUser.jsx';
 import DashBoardForAdmin from './DashBoard/DashBoardForAdmin.jsx';
 import LoginForm from './DashBoard/Header/LoginForm/LoginForm.jsx';
 import PostDetail from './DashBoard/Post/PostDetail.jsx';
 import ManagerProfile from './DashBoard/ManagerProfile/ManagerProfile.jsx';
+import Content from './DashBoard/Content/Content.jsx';
+import Post from './DashBoard/Content/Post.jsx';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
@@ -15,11 +17,13 @@ function App() {
   };
 
   return (
-    <Router>
-      <div>
+    <BrowserRouter>
         <Routes>
           <Route path="*" element={<DashBoard_GenUser />} />
-          <Route path="/admin" element={<DashBoardForAdmin />} />
+          <Route path="/admin" element={<DashBoardForAdmin />} >
+            <Route path="PostContentList" element={<Post />} />
+          </Route>
+          
           <Route path="/create-new-post" element={<PostDetail />} />
           <Route path="/manage-profile" element={<ManagerProfile />} />
         </Routes>
@@ -28,8 +32,7 @@ function App() {
         {isLoggedIn && (
           <LoginForm onSubmit={handleLoginSuccess} onClose={() => {}} />
         )}
-      </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

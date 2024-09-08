@@ -18,7 +18,7 @@ function Sidebar() {
   };
 
   const handlePostContentList = () => {
-    navigate('/PostContentList');
+    navigate('/admin/PostContentList');
   };
 
   return (
