@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'; // Đảm bảo rằng bạn tạo tệp CSS tương ứng
+import './Footer.css'; // 
 import { FaEnvelope, FaLine, FaFacebook } from 'react-icons/fa'; // Sử dụng các biểu tượng từ react-icons
 
 function Footer() {

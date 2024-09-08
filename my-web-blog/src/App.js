@@ -1,38 +1,32 @@
 import React, { useState } from 'react';
-import Header from './Header/Header.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MenuBar from './MenuBar/MenuBar';
-import M1_A from './MenuBar/Menu_1/M1_A'; 
-import Footer from './Footer/Footer.jsx';
 import DashBoard_GenUser from './DashBoard/DashBoard_GenUser.jsx';
-import LoginForm from './Header/LoginForm/LoginForm.jsx'; // Import LoginForm component
+import DashBoardForAdmin from './DashBoard/DashBoardForAdmin.jsx';
+import LoginForm from './DashBoard/Header/LoginForm/LoginForm.jsx';
 
 function App() {
-  const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const openLoginForm = () => {
-    setIsLoginFormOpen(true);
-  };
-
-  const closeLoginForm = () => {
-    setIsLoginFormOpen(false);
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setIsLoggedIn(true);
   };
 
   return (
-    <>
-      <Header openLoginForm={openLoginForm} />
-      <Router>
-        <div>
-          <MenuBar />
-          <Routes>
-            <Route path="/m1-a" element={<M1_A />} />
-          </Routes>
-        </div>
-      </Router>
-      <DashBoard_GenUser />
-      <Footer />
-      {isLoginFormOpen && <LoginForm onClose={closeLoginForm} />}
-    </>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="*" element={<DashBoard_GenUser />} />
+          <Route path="/admin" element={<DashBoardForAdmin />} />
+        </Routes>
+
+        {/* Hiển thị form đăng nhập nếu chưa đăng nhập */}
+        {isLoggedIn && (
+          <LoginForm onSubmit={handleLoginSuccess} onClose={() => {}} />
+        )}
+      </div>
+    </Router>
   );
 }
 

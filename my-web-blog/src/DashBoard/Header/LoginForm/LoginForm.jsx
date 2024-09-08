@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
-function LoginForm({ onClose }) {
+function LoginForm({ onClose, onSubmit }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    // Kiểm tra thông tin đăng nhập
+    if (username === 'admin' && password === 'a') {
+      if (onSubmit) {
+        onSubmit({ username });
+      }
+      onClose();
+      navigate('/admin');
+    } else {
+      alert('ユーザー名またはパスワードが間違っています!');
+    }
   };
 
   return (
@@ -26,6 +37,7 @@ function LoginForm({ onClose }) {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              autoComplete="username"
             />
           </div>
           <div>
@@ -36,6 +48,7 @@ function LoginForm({ onClose }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              autoComplete="current-password"
             />
           </div>
           <button type="submit">Login</button>
