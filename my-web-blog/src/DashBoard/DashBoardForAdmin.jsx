@@ -1,6 +1,8 @@
+
+import Sidebar from './Sidebar/Sidebar.jsx';
 function DashBoardForAdmin(){
     return(
-        <h1>DashBoardForAdmin</h1>
+        <Sidebar></Sidebar>
     );
 }
 export default DashBoardForAdmin
