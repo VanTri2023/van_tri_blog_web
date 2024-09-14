@@ -1,0 +1,13 @@
+.image-main img {
+  height: 120px;
+  width: 120px;
+  border-radius: 10px;
+  object-fit: contain;
+  margin: 10px 0px;
+}
+.data-content {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 6px;
+  background: rgba(218, 212, 212, 0.698);
+}

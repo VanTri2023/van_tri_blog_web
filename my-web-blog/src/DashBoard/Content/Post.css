@@ -1,0 +1,57 @@
+.list-blog {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 740px;
+  margin-left: 350px;
+  border-radius: 6px;
+  background: white;
+  padding: 10px 50px;
+}
+.list-blog h1 {
+  text-align: center;
+}
+.listblog-format-main {
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+  width: 100%;
+  padding: 10px 10px;
+  gap: 10px;
+  color: #454545;
+  background-color: aquamarine;
+  border: solid 1px black;
+}
+.listblog-format-main p {
+  font-size: 16px;
+  font-weight: bold;
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: auto;
+  border: solid 1px black;
+  padding: 10px;
+}
+.listblog-format-main-info {
+  display: grid;
+  grid-template-columns: 1fr 4fr 2.5fr 2.5fr 2.5fr;
+  width: 100%;
+  gap: 5px;
+  padding: 10px 0px;
+}
+.bt-edit {
+  width: 100px;
+  height: 40px;
+  background-color: hsla(149, 91%, 41%, 0.691);
+}
+.bt-remove {
+  width: 100px;
+  height: 40px;
+  background-color: hsla(344, 93%, 44%, 0.691);
+}
+.posts-grid {
+  overflow-y: auto;
+}
+.post-image {
+  height: 80px;
+  width: 90px;
+}

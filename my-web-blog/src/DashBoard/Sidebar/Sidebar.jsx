@@ -1,11 +1,15 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React ,{useContext} from 'react';
+import {useNavigate } from 'react-router-dom';
+import { DataContext } from '../../Context/DataContext';
 import './Sidebar.css'; 
 
+
 function Sidebar() {
+  const updateName = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleCreateNewPost = () => {
+    updateName.updateValueName("Hello Tran Quoc Toan");
     navigate('/create-new-post'); 
   };
 
@@ -18,10 +22,11 @@ function Sidebar() {
   };
 
   const handlePostContentList = () => {
-    navigate('/admin/PostContentList');
+    navigate('PostContentList');
   };
 
   return (
+    <>
     <div className="sidebar">
       <h2 className="sidebar-title">管理</h2>
       <ul className="sidebar-menu">
@@ -48,6 +53,9 @@ function Sidebar() {
         
       </ul>
     </div>
+    </>
+    
+    
   );
 }
 

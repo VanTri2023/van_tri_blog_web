@@ -19,13 +19,12 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="*" element={<DashBoard_GenUser />} />
-          <Route path="/admin" element={<DashBoardForAdmin />} >
+          <Route path="/" element={<DashBoard_GenUser />} />
+          <Route path="admin" element={<DashBoardForAdmin />}>
             <Route path="PostContentList" element={<Post />} />
           </Route>
-          
-          <Route path="/create-new-post" element={<PostDetail />} />
-          <Route path="/manage-profile" element={<ManagerProfile />} />
+          <Route path="create-new-post" element={<PostDetail />} />
+          <Route path="manage-profile" element={<ManagerProfile />} />
         </Routes>
 
         {/* Hiển thị form đăng nhập nếu chưa đăng nhập */}

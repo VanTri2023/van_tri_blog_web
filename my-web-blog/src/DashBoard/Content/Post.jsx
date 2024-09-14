@@ -1,4 +1,6 @@
-import React from 'react';
+import React,{useContext} from 'react';
+import { DataContext } from '../../Context/DataContext';
+import './Post.css';
 
 const posts = [
   { id: 1, title: 'Chủ đề 1', imageUrl: 'https://via.placeholder.com/150?text=Post+1' },
@@ -24,16 +26,37 @@ const posts = [
 ];
 
 const Post = () => {
+  
+  const valueName = useContext(DataContext);
+  const nameContent = valueName.valueContent;
+  console.log(nameContent);
+
   return (
+    <div className='list-blog'>
+      <h1>Danh Sách Tất Cả Các Bài Viết </h1>
+      <h1>{nameContent}</h1>
+      <div className="listblog-format-main">
+        <p>Số Thứ Tự</p>
+        <p>Tên Chủ Đề</p>
+        <p>Hình Ảnh Bài Blog</p>
+        <p>Sữa Bài Blog</p>
+        <p>Xoa Bài Blog</p>
+      </div>
     <div className="posts-grid">
-      {posts.map((post) => (
-        <div key={post.id} className="post-card">
-          <img src={post.imageUrl} alt={post.title} className="post-image" />
-          <h3 className="post-title">{post.title}</h3>
+      {posts.map((post,index) => {
+        return  <>
+          <div key={index} className="listblog-format-main-info">
+            <p>{post.id}</p>
+            <h3 className="post-title">{post.title}</h3>
+            <img src={post.imageUrl} alt={post.title} className="post-image" />
+            <button className='bt-edit'>Edit Blog</button>
+            <button className='bt-remove'>Remove Blog</button>
         </div>
-      ))}
+        </>
+      })}
     </div>
-  );
-};
+    </div>
+  )
+}
 
 export default Post;
