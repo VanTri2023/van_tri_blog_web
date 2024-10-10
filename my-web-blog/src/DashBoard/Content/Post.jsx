@@ -1,4 +1,5 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate để điều hướng
 import { DataContext } from '../../Context/DataContext';
 import './Post.css';
 
@@ -26,37 +27,32 @@ const posts = [
 ];
 
 const Post = () => {
-  
   const valueName = useContext(DataContext);
   const nameContent = valueName.valueContent;
-  console.log(nameContent);
+  const navigate = useNavigate();  // Sử dụng hook để điều hướng
+
+  // Hàm xử lý khi nhấn nút "編集"
+  const handleEditClick = () => {
+    navigate('/create-new-post');  // Điều hướng đến trang PostCreateEdit
+  };
 
   return (
     <div className='list-blog'>
-      <h1>Danh Sách Tất Cả Các Bài Viết </h1>
       <h1>{nameContent}</h1>
-      <div className="listblog-format-main">
-        <p>Số Thứ Tự</p>
-        <p>Tên Chủ Đề</p>
-        <p>Hình Ảnh Bài Blog</p>
-        <p>Sữa Bài Blog</p>
-        <p>Xoa Bài Blog</p>
-      </div>
-    <div className="posts-grid">
-      {posts.map((post,index) => {
-        return  <>
+      <h1>全てコンテンツ一覧</h1>
+      <div className="posts-grid">
+        {posts.map((post, index) => (
           <div key={index} className="listblog-format-main-info">
             <p>{post.id}</p>
-            <h3 className="post-title">{post.title}</h3>
             <img src={post.imageUrl} alt={post.title} className="post-image" />
-            <button className='bt-edit'>Edit Blog</button>
-            <button className='bt-remove'>Remove Blog</button>
-        </div>
-        </>
-      })}
+            <h3 className="post-title">{post.title}</h3>
+            <button className='bt-edit_remove' onClick={handleEditClick}>編集</button> 
+            <button className='bt-edit_remove'>削除</button>  {/* Nút xóa */}
+          </div>
+        ))}
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
 export default Post;

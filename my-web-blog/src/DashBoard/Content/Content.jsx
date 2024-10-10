@@ -7,7 +7,7 @@ const Content = ({ currentPage }) => {
   // Dữ liệu mẫu bài viết
   const samplePosts = Array.from({ length: 20 }, (_, index) => ({
     id: index,
-    title: `Bài viết ${index + 1}`,
+    title: `記事 ${index + 1}`,
     imageUrl: `https://via.placeholder.com/150?text=Post+${index + 1}`, // Hình ảnh đại diện
   }));
 

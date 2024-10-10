@@ -3,7 +3,7 @@ import { DataContext } from '../../Context/DataContext'
 import upload_area from '../../Images/upload_area.svg'
 import {useNavigate } from 'react-router-dom';
 import JoditEditor from'jodit-react'
-import './PostDetail.css'
+import './PostCreateEdit.css'
 const PostDetail = () => {
   const navigate = useNavigate();
   const contextData = useContext(DataContext);

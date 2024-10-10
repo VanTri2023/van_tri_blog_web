@@ -32,7 +32,7 @@
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   /* Đặt kích thước cố định cho từng bài viết */
-  height: 240px; /* Chiều cao cố định */
+  height: 100px; /* Chiều cao cố định */
 }
 
 .post-image {

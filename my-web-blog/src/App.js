@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashBoard_GenUser from './DashBoard/DashBoard_GenUser.jsx';
 import DashBoardForAdmin from './DashBoard/DashBoardForAdmin.jsx';
 import LoginForm from './DashBoard/Header/LoginForm/LoginForm.jsx';
-import PostDetail from './DashBoard/Post/PostDetail.jsx';
+import PostCreateEdit from './DashBoard/Post/PostCreateEdit.jsx';
 import ManagerProfile from './DashBoard/ManagerProfile/ManagerProfile.jsx';
 import Content from './DashBoard/Content/Content.jsx';
 import Post from './DashBoard/Content/Post.jsx';
@@ -23,7 +23,7 @@ function App() {
           <Route path="admin" element={<DashBoardForAdmin />}>
             <Route path="PostContentList" element={<Post />} />
           </Route>
-          <Route path="create-new-post" element={<PostDetail />} />
+          <Route path="create-new-post" element={<PostCreateEdit />} />
           <Route path="manage-profile" element={<ManagerProfile />} />
         </Routes>
 

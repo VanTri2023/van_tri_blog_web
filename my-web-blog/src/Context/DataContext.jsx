@@ -5,7 +5,7 @@ import React,{createContext, useState} from "react";
 export const DataContext = createContext(null);
 
 const DataContextProvider = ({children}) => {
-    const [valueContent, setValueContent] = useState("Hello Van Tri");
+    const [valueContent, setValueContent] = useState("Welcome User");
 
     const [newValueContent, setnewValueContent] = useState({})
     const updateValueName = (valuename) =>{
