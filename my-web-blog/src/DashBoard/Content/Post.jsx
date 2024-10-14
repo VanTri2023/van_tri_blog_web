@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate để điều hướng
+import React, { useContext,useEffect,useState } from 'react';
+import { Await, useNavigate } from 'react-router-dom'; // Import useNavigate để điều hướng
 import { DataContext } from '../../Context/DataContext';
 import './Post.css';
-
+import axios from "axios";
 const posts = [
   { id: 1, title: 'Chủ đề 1', imageUrl: 'https://via.placeholder.com/150?text=Post+1' },
   { id: 2, title: 'Chủ đề 2', imageUrl: 'https://via.placeholder.com/150?text=Post+2' },
@@ -26,28 +26,75 @@ const posts = [
   { id: 20, title: 'Chủ đề 20', imageUrl: 'https://via.placeholder.com/150?text=Post+20' },
 ];
 
+
 const Post = () => {
   const valueName = useContext(DataContext);
-  const nameContent = valueName.valueContent;
+  const nameContent = valueName.updateValueName;
   const navigate = useNavigate();  // Sử dụng hook để điều hướng
-
+  const [listBlogFromDB,setlistBlogFromDB] = useState([]);
+  const [postContent,setPostContent] = useState({});
   // Hàm xử lý khi nhấn nút "編集"
-  const handleEditClick = () => {
+  const handleEditClick = async (id) => {
+  await  axios.get(`http://localhost:8080/GetPostByID/${id}`)
+    .then(response => {
+      console.log(response.data);
+      setPostContent(response.data);
+      console.log(postContent);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    valueName.updateValueContent(postContent);
+    
     navigate('/create-new-post');  // Điều hướng đến trang PostCreateEdit
   };
+
+ // Theo dõi thay đổi của `postContent` và cập nhật vào context
+ useEffect(() => {
+  if (Object.keys(postContent).length > 0) {  // Kiểm tra postContent không rỗng
+    valueName.updateValueContent(postContent);  // Cập nhật context
+    console.log("Updated post content:", postContent);  // Kiểm tra postContent
+
+  }
+}, [postContent]);  // Chỉ chạy khi postContent thay đổi
+
+  const handleDeletePost = (id) => {
+    axios.delete(`http://localhost:8080/deletePost/${id}`)
+    .then(response => {
+      alert(response.data);
+      getAllPosts();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+   
+  }
+  const getAllPosts = () =>{
+    axios.get('http://localhost:8080/GetPostList_All')
+      .then(response => {
+        setlistBlogFromDB(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      console.log(listBlogFromDB);
+  }
+  useEffect(() => {
+    getAllPosts();
+  }, []);
 
   return (
     <div className='list-blog'>
       <h1>{nameContent}</h1>
       <h1>全てコンテンツ一覧</h1>
       <div className="posts-grid">
-        {posts.map((post, index) => (
+        {listBlogFromDB.map((post, index) => (
           <div key={index} className="listblog-format-main-info">
             <p>{post.id}</p>
-            <img src={post.imageUrl} alt={post.title} className="post-image" />
-            <h3 className="post-title">{post.title}</h3>
-            <button className='bt-edit_remove' onClick={handleEditClick}>編集</button> 
-            <button className='bt-edit_remove'>削除</button>  {/* Nút xóa */}
+            <img src={"https://via.placeholder.com/150?text=Post"} alt={post.nameBlog} className="post-image" />
+            <h3 className="post-title">{post.nameBlog}</h3>
+            <button className='bt-edit_remove' onClick={()=>{handleEditClick(post.id)}}>編集</button> 
+            <button className='bt-edit_remove' onClick={()=>{handleDeletePost(post.id)}}>削除</button>  {/* Nút xóa */}
           </div>
         ))}
       </div>

@@ -1,14 +1,19 @@
-import React ,{useContext,useRef,useMemo,useState} from 'react'
+import React ,{useContext,useRef,useMemo,useState,useEffect} from 'react'
 import { DataContext } from '../../Context/DataContext'
 import upload_area from '../../Images/upload_area.svg'
 import {useNavigate } from 'react-router-dom';
 import JoditEditor from'jodit-react'
 import './PostCreateEdit.css'
+import { request } from '../../axios_config';
 const PostDetail = () => {
   const navigate = useNavigate();
   const contextData = useContext(DataContext);
-  const newNameContext = contextData.valueContent;
+  const postContext = contextData.newValueContent;
   const [mainImage, setMainImage] = useState(false);
+
+  useEffect(() => {
+    console.log(postContext);
+  }, []);
 
   const [newBlogDetails, setnewBlogDetails] = useState({
     nameBlog:"",
@@ -25,24 +30,32 @@ const PostDetail = () => {
     const mainImageHandler = (e) => {
       setMainImage(e.target.files[0]);
     }
-  const saveNewBlog = async () =>{
-    newBlogDetails.newBlogContent = content;
-    newBlogDetails.mainImage = mainImage;
-    let newBlog = newBlogDetails;
-    let formDataBlog = new FormData();
-   // formDataBlog.append("datablog",newBlog);
-   // formDataBlog.append("mainImage", mainImage);
-    for ( var key in newBlog ) {
-      formDataBlog.append(key, newBlog[key]);
-   }
-  //formDataBlog.append("mainImage", mainImage);
-  contextData.updateValueContent(formDataBlog);
+    const saveNewBlog = async () =>{
+      newBlogDetails.newBlogContent = content;
+      newBlogDetails.mainImage = mainImage;
+      let newBlog = newBlogDetails;
+      let formDataBlog = new FormData();
+    // formDataBlog.append("datablog",newBlog);
+    // formDataBlog.append("mainImage", mainImage);
+      for ( var key in newBlog ) {
+        formDataBlog.append(key, newBlog[key]);
+      }
+    await request(
+    "POST",
+    "/PostCreateEdit",
+    formDataBlog
+    ).then((response)=>{
+    alert(response.data);
+    });
+  
+    //formDataBlog.append("mainImage", mainImage);
+    //contextData.updateValueContent(formDataBlog);
 
-    for (const value of formDataBlog.values()) {
-      console.log(value);
-    }
-   // contextData.updateValueName(formDataBlog);
-   navigate('/manage-profile');
+    //for (const value of formDataBlog.values()) {
+    //  console.log(value);
+    //}
+    // contextData.updateValueName(formDataBlog);
+    navigate("/admin/PostContentList");
   }
   
   const editor = useRef(null);
@@ -52,10 +65,11 @@ const PostDetail = () => {
         "insertImageAsBase64URI": true
       }
     }), []);
+
+  
+
   return (
     <>
-     <div>{newNameContext}</div>
-
      <div className='addnewblog'>
       <div className='bt-addnewblog'>
           <p>Create New Blog</p>

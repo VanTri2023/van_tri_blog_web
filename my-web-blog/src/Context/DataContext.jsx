@@ -8,6 +8,7 @@ const DataContextProvider = ({children}) => {
     const [valueContent, setValueContent] = useState("Welcome User");
 
     const [newValueContent, setnewValueContent] = useState({})
+    
     const updateValueName = (valuename) =>{
         setValueContent(valuename);
     }
