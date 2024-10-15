@@ -5,14 +5,15 @@ import {useNavigate } from 'react-router-dom';
 import JoditEditor from'jodit-react'
 import './PostCreateEdit.css'
 import { request } from '../../axios_config';
+
 const PostDetail = () => {
   const navigate = useNavigate();
   const contextData = useContext(DataContext);
-  const postContext = contextData.newValueContent;
+  const postContext = contextData.postContent;
   const [mainImage, setMainImage] = useState(false);
 
   useEffect(() => {
-    console.log(postContext);
+    console.log("postContext:", postContext);
   }, []);
 
   const [newBlogDetails, setnewBlogDetails] = useState({
@@ -22,6 +23,23 @@ const PostDetail = () => {
     categoryMenu:"",
     newBlogContent:"",
   })
+  const [content, setContent] = useState(""); // đã chỉnh sửa: Khởi tạo state cho content
+
+  //Sử dụng useEffect để lấy giá trị từ postContext và cập nhật state
+  useEffect(() => {
+    if (postContext) {
+      setnewBlogDetails({
+        nameBlog: postContext.nameBlog || "",
+        nameTitle: postContext.nameTitle || "",
+        mainImage: postContext.mainImage || [],
+        categoryMenu: postContext.categoryMenu || "",
+        newBlogContent: postContext.newBlogContent || "",
+      });
+      setContent(postContext.newBlogContent || "");
+    }
+    console.log("postContext111:",postContext); // Xuất dữ liệu ra console để kiểm tra
+  }, [postContext]); // Theo dõi sự thay đổi của postContext
+
 
   const changeHandler = (e) =>{
     setnewBlogDetails({...newBlogDetails,[e.target.name]:e.target.value})
@@ -59,7 +77,7 @@ const PostDetail = () => {
   }
   
   const editor = useRef(null);
-    const [content, setContent] = useState("");
+    //const [content, setContent] = useState("");
     const config =  useMemo(() => ({
       uploader: {
         "insertImageAsBase64URI": true

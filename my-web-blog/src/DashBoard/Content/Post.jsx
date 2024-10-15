@@ -30,33 +30,25 @@ const posts = [
 const Post = () => {
   const valueName = useContext(DataContext);
   const nameContent = valueName.updateValueName;
-  const navigate = useNavigate();  // Sử dụng hook để điều hướng
   const [listBlogFromDB,setlistBlogFromDB] = useState([]);
   const [postContent,setPostContent] = useState({});
+
+  const { updatePostContent } = useContext(DataContext); 
+  const navigate = useNavigate();  // Sử dụng hook để điều hướng
+
   // Hàm xử lý khi nhấn nút "編集"
   const handleEditClick = async (id) => {
   await  axios.get(`http://localhost:8080/GetPostByID/${id}`)
     .then(response => {
-      console.log(response.data);
-      setPostContent(response.data);
-      console.log(postContent);
+      const postData = response.data;
+      console.log("Post data:", postData); 
+      updatePostContent(postData);  // Cập nhật dữ liệu vào DataContext
+      navigate('/create-new-post');  // Điều hướng đến trang PostCreateEdit
     })
     .catch(error => {
       console.log(error);
     });
-    valueName.updateValueContent(postContent);
-    
-    navigate('/create-new-post');  // Điều hướng đến trang PostCreateEdit
   };
-
- // Theo dõi thay đổi của `postContent` và cập nhật vào context
- useEffect(() => {
-  if (Object.keys(postContent).length > 0) {  // Kiểm tra postContent không rỗng
-    valueName.updateValueContent(postContent);  // Cập nhật context
-    console.log("Updated post content:", postContent);  // Kiểm tra postContent
-
-  }
-}, [postContent]);  // Chỉ chạy khi postContent thay đổi
 
   const handleDeletePost = (id) => {
     axios.delete(`http://localhost:8080/deletePost/${id}`)
