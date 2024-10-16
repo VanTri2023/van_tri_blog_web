@@ -5,6 +5,7 @@ import DashBoardForAdmin from './DashBoard/DashBoardForAdmin.jsx';
 import LoginForm from './DashBoard/Header/LoginForm/LoginForm.jsx';
 import PostCreateEdit from './DashBoard/Post/PostCreateEdit.jsx';
 import ManagerProfile from './DashBoard/ManagerProfile/ManagerProfile.jsx';
+import EditBlogContent from './DashBoard/Post/EditBlogContent.jsx';
 import Content from './DashBoard/Content/Content.jsx';
 import Post from './DashBoard/Content/Post.jsx';
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="PostContentList" element={<Post />} />
           </Route>
           <Route path="create-new-post" element={<PostCreateEdit />} />
+          <Route path="edit-post" element={<EditBlogContent />} />
           <Route path="manage-profile" element={<ManagerProfile />} />
         </Routes>
 

@@ -1,0 +1,5 @@
+package com.mainprogram.dto;
+
+public class PostBlog_dtoForTest {
+
+}

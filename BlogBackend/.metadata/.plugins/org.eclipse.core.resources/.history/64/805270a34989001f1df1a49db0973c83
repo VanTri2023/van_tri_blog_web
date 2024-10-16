@@ -1,0 +1,5 @@
+package com.mainprogram;
+
+public class WebSecurityConfig {
+
+}

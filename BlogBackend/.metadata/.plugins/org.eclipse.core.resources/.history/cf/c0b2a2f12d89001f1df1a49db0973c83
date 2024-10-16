@@ -1,0 +1,5 @@
+package com.mainprogram.service;
+
+public class PostService {
+
+}

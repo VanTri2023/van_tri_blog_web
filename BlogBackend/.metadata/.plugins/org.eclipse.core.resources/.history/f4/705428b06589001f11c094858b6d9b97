@@ -1,0 +1,18 @@
+package com.mainprogram.service;
+
+import org.springframework.stereotype.Service;
+
+import com.mainprogram.dto.Post_Blog_dto;
+import com.mainprogram.entity.Post_Blog;
+
+@Service
+public class PostService {
+
+	public void SavePostsContentToDB(Post_Blog_dto postblog_dto) {
+		// TODO Auto-generated method stub
+		Post_Blog post_Blog = new Post_Blog();
+		
+		
+	}
+
+}

@@ -1,0 +1,29 @@
+# DAO ket noi toi database can phai cau hinh
+#---------------Cau Hinh database-----------
+# JDBC driver
+# JBDC URL
+#UseName
+server.port=8080
+security.basic.enabled=false
+#---------------Connect on localhost DB ---------------
+spring.datasource.url=jdbc:mysql://localhost:3306/DataBlog
+spring.datasource.dbcp2.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=docbuoc611014
+#---------------Connect on AWS DB ---------------
+#spring.datasource.url=jdbc:mysql://datamanagerment.c30sokyyuxct.us-east-2.rds.amazonaws.com:3306/DataManagerment
+#spring.datasource.dbcp2.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.username=admin
+#spring.datasource.password=123ok9.vantri
+#-------------------------------------------
+
+#-------Cau hinh Hibernate-------------------
+# Hibernate properties
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# fileupload cau hinh size
+spring.servlet.multipart.max-file-size=1024MB
+spring.servlet.multipart.max-request-size=1024MB
+spring.servlet.multipart.enabled=true
+

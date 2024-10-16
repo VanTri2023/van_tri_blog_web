@@ -43,7 +43,7 @@ const Post = () => {
       const postData = response.data;
       console.log("Post data:", postData); 
       updatePostContent(postData);  // Cập nhật dữ liệu vào DataContext
-      navigate('/create-new-post');  // Điều hướng đến trang PostCreateEdit
+      navigate('/edit-post');  // Điều hướng đến trang PostCreateEdit
     })
     .catch(error => {
       console.log(error);

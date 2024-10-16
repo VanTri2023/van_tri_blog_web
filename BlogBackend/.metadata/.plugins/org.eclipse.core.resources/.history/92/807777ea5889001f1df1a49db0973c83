@@ -1,0 +1,29 @@
+package com.mainprogram.controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mainprogram.dto.Post_Blog_dto;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+@RestController
+@RequiredArgsConstructor
+public class PostController {
+	@GetMapping("/")
+	public String helloString () {
+		return "hello";
+	}
+	
+	@PostMapping("/PostCreateEdit")
+	public ResponseEntity<Post_Blog_dto> createOrEditBlog(@RequestBody String entity) {
+		//TODO: process POST request
+		
+		return entity;
+	}
+	
+	
+}

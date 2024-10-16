@@ -1,0 +1,10 @@
+package com.mainprogram.dto;
+
+public class Post_Blog_dto {
+	private String nameBlog;
+	private String nameTitle;
+	private String mainImage;
+	private String categoryMenu;
+	private String newBlogContent;
+	
+}

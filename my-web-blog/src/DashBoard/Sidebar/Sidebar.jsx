@@ -11,6 +11,8 @@ function Sidebar() {
   const handleCreateNewPost = () => {
     updateName.updateValueName("Hello Tran Quoc Toan");
     navigate('/create-new-post'); 
+     
+    
   };
 
   const handleManageProfile = () => {

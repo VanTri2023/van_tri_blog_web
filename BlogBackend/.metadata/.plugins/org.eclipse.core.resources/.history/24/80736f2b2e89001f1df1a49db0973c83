@@ -1,0 +1,6 @@
+package com.mainprogram.entity;
+
+
+public class Post {
+
+}

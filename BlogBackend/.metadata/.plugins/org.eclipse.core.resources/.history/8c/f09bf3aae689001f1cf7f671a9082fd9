@@ -1,0 +1,32 @@
+package com.mainprogram.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mainprogram.dto.Post_Blog_dto;
+import com.mainprogram.entity.Post_Blog;
+import com.mainprogram.repository.PostRepository;
+
+@Service
+public class PostService {
+	private final PostRepository postRepository ;
+	
+	@Autowired
+	public PostService(PostRepository postRepository) {
+		super();
+		this.postRepository = postRepository;
+	}
+
+	public void SavePostsContentToDB(Post_Blog_dto postblog_dto) {
+			
+		Post_Blog post_Blog = new Post_Blog();
+		post_Blog.setName_Blog(postblog_dto.getNameBlog());
+		post_Blog.setName_Title(postblog_dto.getNameTitle());
+		post_Blog.setMain_Image(postblog_dto.getMainImage().getOriginalFilename());
+		post_Blog.setCategory_Menu(postblog_dto.getCategoryMenu());
+		post_Blog.setContent_(postblog_dto.getNewBlogContent());
+		
+		postRepository.save(post_Blog);
+	}
+
+}
