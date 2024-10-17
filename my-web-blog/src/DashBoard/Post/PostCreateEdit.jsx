@@ -1,20 +1,15 @@
-import React ,{useContext,useRef,useMemo,useState,useEffect} from 'react'
-import { DataContext } from '../../Context/DataContext'
+import React ,{useRef,useMemo,useState,useEffect} from 'react'
 import upload_area from '../../Images/upload_area.svg'
-import {useNavigate } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import JoditEditor from'jodit-react'
 import './PostCreateEdit.css'
 import { request } from '../../axios_config';
-const CreateNewPostDetail  = () => {
+import axios from 'axios';
+
+const PostDetail = () => {
   const navigate = useNavigate();
-  const contextData = useContext(DataContext);
-  const postContext = contextData.newValueContent;
+ const [content, setContent] = useState(""); // đã chỉnh sửa: Khởi tạo state cho content
   const [mainImage, setMainImage] = useState(false);
-
-  useEffect(() => {
-    console.log(postContext);
-  }, []);
-
   const [newBlogDetails, setnewBlogDetails] = useState({
     nameBlog:"",
     nameTitle:"",
@@ -22,7 +17,31 @@ const CreateNewPostDetail  = () => {
     categoryMenu:"",
     newBlogContent:"",
   })
-
+  const {blogId} = useParams();
+  useEffect(() => {
+    console.log("Id blog",blogId);
+    if(blogId ==='_Add'){
+      return
+  }
+  else{
+    axios.get(`http://localhost:8080/GetPostByID/${blogId}`)
+    .then(response => {
+      const postData = response.data;
+      console.log("Post data:", postData); 
+     setnewBlogDetails({
+      nameBlog: postData.nameBlog || "",
+      nameTitle: postData.nameTitle || "",
+      mainImage: postData.mainImage || [],
+      categoryMenu: postData.categoryMenu || "",
+      newBlogContent: postData.newBlogContent || "",
+    });
+    setContent(postData.newBlogContent || "");
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+  }, []);
   const changeHandler = (e) =>{
     setnewBlogDetails({...newBlogDetails,[e.target.name]:e.target.value})
     }
@@ -30,36 +49,38 @@ const CreateNewPostDetail  = () => {
     const mainImageHandler = (e) => {
       setMainImage(e.target.files[0]);
     }
+    // Request tạo mới bài blog hoặc cập nhật bài blog theo id
     const saveNewBlog = async () =>{
       newBlogDetails.newBlogContent = content;
       newBlogDetails.mainImage = mainImage;
       let newBlog = newBlogDetails;
       let formDataBlog = new FormData();
-    // formDataBlog.append("datablog",newBlog);
-    // formDataBlog.append("mainImage", mainImage);
       for ( var key in newBlog ) {
         formDataBlog.append(key, newBlog[key]);
       }
-    await request(
-    "POST",
-    "/PostCreateEdit",
-    formDataBlog
-    ).then((response)=>{
-    alert(response.data);
-    });
-  
-    //formDataBlog.append("mainImage", mainImage);
-    //contextData.updateValueContent(formDataBlog);
+      if(blogId == '_Add'){
+        await request(
+          "POST",
+          "/PostCreateEdit",
+          formDataBlog
+          ).then((response)=>{
+          alert(response.data);
+          });
+      }else{
+        await request(
+          "PUT",
+          `/UpdatePostContent/${blogId}`,
+          formDataBlog
+          ).then((response)=>{
+          alert(response.data);
+          });
+      }
+      navigate("/admin/PostContentList");
 
-    //for (const value of formDataBlog.values()) {
-    //  console.log(value);
-    //}
-    // contextData.updateValueName(formDataBlog);
-    navigate("/admin/PostContentList");
   }
   
   const editor = useRef(null);
-    const [content, setContent] = useState("");
+    //const [content, setContent] = useState("");
     const config =  useMemo(() => ({
       uploader: {
         "insertImageAsBase64URI": true
@@ -72,7 +93,8 @@ const CreateNewPostDetail  = () => {
     <>
      <div className='addnewblog'>
       <div className='bt-addnewblog'>
-          <p>Create New Blog</p>
+        {blogId === '_Add' ? <p>Create New Blog</p> : <p>Edit Blog</p>}
+          
           <div className='bt-save'>
               <button>下書き保存</button>
               <button onClick={() =>{saveNewBlog()}} >登録</button>
@@ -119,4 +141,4 @@ const CreateNewPostDetail  = () => {
   )
 }
 
-export default CreateNewPostDetail 
+export default PostDetail

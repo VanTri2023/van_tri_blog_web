@@ -5,8 +5,8 @@ import DashBoardForAdmin from './DashBoard/DashBoardForAdmin.jsx';
 import LoginForm from './DashBoard/Header/LoginForm/LoginForm.jsx';
 import PostCreateEdit from './DashBoard/Post/PostCreateEdit.jsx';
 import ManagerProfile from './DashBoard/ManagerProfile/ManagerProfile.jsx';
-import EditBlogContent from './DashBoard/Post/EditBlogContent.jsx';
 import Content from './DashBoard/Content/Content.jsx';
+import ShowPostDetail from './DashBoard/Post/ShowPostDetail.jsx'
 import Post from './DashBoard/Content/Post.jsx';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,9 +24,9 @@ function App() {
           <Route path="admin" element={<DashBoardForAdmin />}>
             <Route path="PostContentList" element={<Post />} />
           </Route>
-          <Route path="create-new-post" element={<PostCreateEdit />} />
-          <Route path="edit-post" element={<EditBlogContent />} />
-          <Route path="manage-profile" element={<ManagerProfile />} />
+          <Route path="create-new-post/:blogId" element={<PostCreateEdit />} />
+          <Route path="manage-profile" element={<ManagerProfile />}/>
+          <Route path="Show-PostDetail/:showId" element={<ShowPostDetail/>}/>
         </Routes>
 
         {/* Hiển thị form đăng nhập nếu chưa đăng nhập */}
