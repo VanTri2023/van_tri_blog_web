@@ -1,12 +1,28 @@
+.post-create-edit-container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+}
+
 .addnewblog {
   box-sizing: border-box;
-  width: 100%;
   max-width: 1200px;
-  padding: 30px 50px;
   margin: 20px 50px;
   border-radius: 6px;
+  margin-left: 270px; /* Khoảng cách để nội dung tránh Sidebar */
+  width: calc(100% - 270px); /* Tính toán để nội dung chiếm phần còn lại */
+  padding: 30px 50px;
   background: hsl(0, 0%, 96%);
 }
+
 .bt-addnewblog {
   width: 100%;
   background-color: white;
@@ -22,10 +38,10 @@
   color: black;
 }
 .bt-save {
-  width: 300px;
-  height: 100%;
   display: flex;
   justify-content: space-between;
+  width: 300px;
+  height: 100%;
 }
 .bt-save button {
   width: 140px;

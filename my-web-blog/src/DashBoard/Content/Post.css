@@ -38,13 +38,12 @@
   width: 100%;
   gap: 5px;
   padding: 10px 0px;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .listblog-format-main-info:hover {
-  background-color: rgb(235, 233, 233); 
+  background-color: rgb(235, 233, 233);
 }
-
 
 /*
 .listblog-format-main-info {
@@ -56,17 +55,15 @@
 }
 */
 .bt-edit_remove {
-  background-color: transparent; 
-  width: auto; 
-  height: auto; 
-  border: none; 
-  color: blue; 
-  text-decoration: underline; 
-  cursor: pointer; 
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
   padding: 0;
-
 }
-
 
 /*
 .bt-edit {
@@ -80,16 +77,19 @@
   background-color: hsla(344, 93%, 44%, 0.691);
 }
   */
-  
+
 .posts-grid {
   overflow-y: auto;
 }
 .post-image {
   height: 80px;
   width: 90px;
+  object-fit: cover;
+  cursor: pointer;
 }
 .post-title {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

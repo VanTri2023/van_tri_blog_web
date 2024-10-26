@@ -10,9 +10,7 @@ function Sidebar() {
 
   const handleCreateNewPost = () => {
     updateName.updateValueName("Hello Tran Quoc Toan");
-    navigate('/create-new-post'); 
-     
-    
+    navigate('/create-new-post/_Add'); 
   };
 
   const handleManageProfile = () => {
@@ -24,7 +22,7 @@ function Sidebar() {
   };
 
   const handlePostContentList = () => {
-    navigate('PostContentList');
+    navigate('/admin/PostContentList');
   };
 
   return (
