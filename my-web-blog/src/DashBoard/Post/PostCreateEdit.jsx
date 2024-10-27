@@ -106,10 +106,11 @@ const PostDetail = () => {
           <p>カテゴリー</p>
           <select value={newBlogDetails.categoryMenu} onChange={changeHandler} name="categoryMenu" className='add-blog-selector'>
             <option value="">----カテゴリー-----</option>
-            <option value="menu1">Menu1</option>
-            <option value="menu2">Menu2</option>
-            <option value="menu3">Menu3</option>
+            <option value="CI/CD">CI/CD</option>
+            <option value="Simulink Test">Simulink Test</option>
+           { /*<option value="menu3">Menu3</option>
             <option value="menu4">Menu4</option>
+           */}
           </select>
         </div>
         <div className='honbun'>
