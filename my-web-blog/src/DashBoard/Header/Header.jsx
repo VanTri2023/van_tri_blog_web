@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import LoginForm from './LoginForm/LoginForm';
 import HeaderStyle from './Header.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); // Thêm state cho từ khóa tìm kiếm
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
     setLoginFormVisible(true);
@@ -11,6 +14,14 @@ function Header() {
 
   const handleCloseLoginForm = () => {
     setLoginFormVisible(false);
+  };
+
+  // Hàm xử lý sự kiện tìm kiếm
+  const handleSearch = () => {
+    // Điều hướng đến DashBoard_GenUser kèm từ khóa tìm kiếm
+    if (searchTerm.trim()) {
+      navigate(`/?search=${encodeURIComponent(searchTerm)}`);
+    }
   };
 
   return (
@@ -32,8 +43,10 @@ function Header() {
             className={HeaderStyle.search_input}
             type="text"
             placeholder="検索"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} // Cập nhật từ khóa khi nhập
           />
-          <button className={HeaderStyle.search_button}>
+          <button className={HeaderStyle.search_button} onClick={handleSearch}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-search"
