@@ -23,24 +23,30 @@ function DashBoard_GenUser() {
 
   useEffect(() => {
     getAllPosts();
+    
   }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
+    console.log("params:",params);
     const searchTerm = params.get("search");
     if (searchTerm) {
+      console.log("searchTerm in User page:",searchTerm);
       filterPostsByKeyword(searchTerm);
     } else {
+      console.log("selectedCategory:",selectedCategory);
       // Khi không có từ khóa, hiển thị bài viết theo danh mục
       filterPostsByCategory(selectedCategory);
     }
-  }, [location.search, selectedCategory]);
+  }, [location.search, selectedCategory]);//
 
   const getAllPosts = () => {
     axios.get('http://localhost:8080/GetPostList_All')
       .then(response => {
         setPosts(response.data);
         setOriginalPosts(response.data); // Lưu trữ bài viết gốc
+        
+        
       })
       .catch(error => {
         console.error('Error fetching posts:', error);
@@ -48,11 +54,14 @@ function DashBoard_GenUser() {
   };
 
   const filterPostsByKeyword = (keyword) => {
-    const filtered = posts.filter(post => 
+    console.log("searchTerm in filterPostsByKeyword:",keyword);
+    const filtered = originalPosts.filter(post => 
       (post.nameBlog && post.nameBlog.includes(keyword)) || // Tìm trong nameBlog
       (post.nameTitle && post.nameTitle.includes(keyword)) || // Tìm trong nameTitle
       (post.newBlogContent && post.newBlogContent.includes(keyword)) // Tìm trong newBlogContent
     );
+    console.log("originalPosts:",originalPosts);
+    console.log("filtered:",filtered);
     setPosts(filtered);
     setCurrentPage(1); // Reset về trang đầu sau khi lọc
   };
@@ -67,11 +76,14 @@ function DashBoard_GenUser() {
   };
 
   const handleCategoryChange = (category) => {
+    console.log("selectedCategory:",category);
     updateSelectedCategory(category);
     setCurrentPage(1);
     if (category === 'ホーム') {
       navigate('/');
     } else {
+      console.log("filterPostsByCategory:",category);
+
       filterPostsByCategory(category);
     }
   };

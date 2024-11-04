@@ -24,12 +24,12 @@ function MenuBar() {
 
   const handleMenuClick = (menuIndex, category) => {
     if (category === 'ホーム') {
-      console.log('category:', category);
+      console.log('category in menu bar:', category);
       console.log('menuIndex:', menuIndex);
       updateSelectedCategory(category);
       navigate('/'); // Điều hướng về trang chính
     } else {
-      console.log('category:', category);
+      console.log('category in menu bar when not is a Home page:', category);
       console.log('menuIndex:', menuIndex);
       updateSelectedCategory(category); // Cập nhật danh mục qua context
       navigate('/');

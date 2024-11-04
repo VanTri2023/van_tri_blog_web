@@ -20,6 +20,7 @@ function Header() {
   const handleSearch = () => {
     // Điều hướng đến DashBoard_GenUser kèm từ khóa tìm kiếm
     if (searchTerm.trim()) {
+      console.log("searchTerm:",searchTerm);
       navigate(`/?search=${encodeURIComponent(searchTerm)}`);
     }
   };
