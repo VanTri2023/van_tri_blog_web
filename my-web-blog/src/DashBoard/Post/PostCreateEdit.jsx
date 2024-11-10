@@ -46,28 +46,49 @@ const PostDetail = () => {
   }
   
   const mainImageHandler = (e) => {
-    setMainImage(e.target.files[0]);
+    if (e.target.files && e.target.files[0]) {
+      setMainImage(e.target.files[0]);
+    }
   }
 
   const saveNewBlog = async () => {
     newBlogDetails.newBlogContent = content;
-    newBlogDetails.mainImage = mainImage;
+  
+    // Tạo FormData và thêm các trường văn bản vào form data
     let formDataBlog = new FormData();
-    for (var key in newBlogDetails) {
-      formDataBlog.append(key, newBlogDetails[key]);
+    formDataBlog.append("nameBlog", newBlogDetails.nameBlog);
+    formDataBlog.append("nameTitle", newBlogDetails.nameTitle);
+    formDataBlog.append("categoryMenu", newBlogDetails.categoryMenu);
+    formDataBlog.append("newBlogContent", newBlogDetails.newBlogContent);
+  
+    // Thêm ảnh chính (mainImage) vào FormData trực tiếp
+    if (mainImage) {
+      formDataBlog.append("mainImage", mainImage);
     }
-    
-    if(blogId === '_Add') {
-      
-      await axios.post("http://localhost:8080/PostCreateEdit", formDataBlog)
-      .then(response => alert(response.data));
-    } else {
-      
-      await axios.put(`http://localhost:8080/UpdatePostContent/${blogId}`, formDataBlog)
-      .then(response => alert(response.data));
+      // Check content of formDataBlog
+    for (let [key, value] of formDataBlog.entries()) {
+      console.log(key, value);
     }
-    navigate("/admin/PostContentList");
-  }
+
+    try {
+      if (blogId === '_Add') {
+        // Gọi API POST để tạo blog mới
+        await axios.post("http://localhost:8080/PostCreateEdit", formDataBlog, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }).then(response => alert(response.data));
+      } else {
+        // Gọi API PUT để cập nhật blog hiện có
+        await axios.put(`http://localhost:8080/UpdatePostContent/${blogId}`, formDataBlog, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }).then(response => alert(response.data));
+      }
+  
+      navigate("/admin/PostContentList");
+    } catch (error) {
+      console.error("Error uploading blog:", error);
+      alert("Error uploading blog. Please try again.");
+    }
+  };
 
   const editor = useRef(null);
  
